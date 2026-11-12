@@ -10,6 +10,7 @@ let player = [columna[pos], fila];
 let exitPoint = 0;
 let puntuacionActual = 0;
 let contImg = 0;
+let id = null;
 let arrayTime = [];
 let tiempo = 99;
 const pacMan = document.createElement('img');
@@ -62,7 +63,7 @@ function procesaTecla(e) {
       ];
       contImg = 1;
       let moveIzquierda = setInterval(() => {
-        if (contImg != 4) {
+        if (contImg != 5) {
           pacMan.src = '../img/' + ArrayPacMan[contImg];
 
           contImg++;
@@ -122,7 +123,7 @@ function procesaTecla(e) {
       ];
 
       let moveDerecha = setInterval(() => {
-        if (contImg != 4) {
+        if (contImg != 5) {
           pacMan.src = '../img/' + ArrayPacMan[contImg];
 
           contImg++;
@@ -181,7 +182,7 @@ function procesaTecla(e) {
 }
 function temporizador() {
   tiempo = 99;
-  let id = setInterval(() => {
+  id = setInterval(() => {
     if (parseInt(tiempo) != 0) {
       tiempo--;
       temporizado.value = tiempo;
@@ -207,8 +208,8 @@ function iniciarGame() {
   puntuacionActual = 0;
   puntuacion.value = puntuacionActual;
   contImg = 0;
-  arrayTime = [];
   limpiarTiem(arrayTime);
+  arrayTime = [];
   generarTablero();
   creadorJugador();
   teclaPulsada();
