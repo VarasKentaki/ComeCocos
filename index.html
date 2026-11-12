@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <script src="css/tailwindcss.js"></script>
+    <link rel="stylesheet" href="css/custom.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examen A</title>
+  </head>
+
+  <body>
+    <div class="container mx-auto mt-1 mb-5 pb-5 bg-black">
+      <header id="header" class="bg-orange-50 p-3 font-bold">
+        Examen - PacMan - A
+      </header>
+
+      <main class="max-w-lg mx-auto bg-black">
+        <div class="bg-black rounded-lg px-6 py-6 mt-5">
+          <div class="grid grid-cols-11 gap-0  border-double border-4 border-blue-700" id="tablero">
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A0"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A1"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A2"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-blue-700"
+              id="A3"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A4"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-b-4 border-blue-700"
+              id="A5"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A6"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-blue-700"
+              id="A7"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A8"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="A10"></div>
+
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="B0"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-t-4 border-blue-700"
+              id="B1"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="B2"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-b-4 border-blue-700"
+              id="B3"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="B4"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="B5"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="B6"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-b-4 border-blue-700"
+              id="B7"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="B8"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-t-4 border-blue-700"
+              id="B9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="B10"></div>
+
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C0"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-b-4 border-blue-700"
+              id="C1"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C2"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C3"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C4"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C5"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C6"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C7"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C8"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-r-4 border-b-4 border-blue-700"
+              id="C9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="C10"></div>
+
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="D0"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="D1"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="D2"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-t-4 border-blue-700"
+              id="D3"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-blue-700"
+              id="D4"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-dotted border-t-4 border-blue-700"
+              id="D5"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-blue-700"
+              id="D6"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-r-4 border-t-4 border-blue-700"
+              id="D7"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="D8"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="D9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="D10"></div>
+
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="E0"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-4 border-blue-700"
+              id="E1"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="E2"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-l-4 border-b-4 border-blue-700"
+              id="E3"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-b-4 border-blue-700"
+              id="E4"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-b-4 border-blue-700"
+              id="E5"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-b-4 border-blue-700"
+              id="E6"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-r-4 border-b-4 border-blue-700"
+              id="E7"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="E8"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-4 border-blue-700"
+              id="E9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="E10"></div>
+
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F0"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F1"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F2"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F3"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F4"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F5"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F6"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F7"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F8"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="F10"></div>
+
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="G0"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-l-4 border-b-4 border-blue-700"
+              id="G1"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-r-4 border-b-4 border-blue-700"
+              id="G2"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="G3"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-l-4 border-b-4 border-blue-700"
+              id="G4"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-b-4 border-blue-700"
+              id="G5"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-b-4 border-r-4 border-blue-700"
+              id="G6"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="G7"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-l-4 border-b-4 border-blue-700"
+              id="G8"></div>
+            <div
+              class="ficha bg-black w-full h-10 flex justify-center items-center border-double border-t-4 border-r-4 border-b-4 border-blue-700"
+              id="G9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="G10"></div>
+
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H0"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H1"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H2"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H3"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H4"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H5"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H6"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H7"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H8"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H9"></div>
+            <div class="ficha bg-black w-full h-10 flex justify-center items-center" id="H10"></div>
+
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <p class="flex justify-center mb-10 mt-10">
+            <button id="partida"
+              class="w-1/2 bg-blue-600 mx-3 px-2 py-3 text-white items-center opacity-90 mr-5 uppercase font-bold"
+              type="button">Nueva Partida!!
+            </button>
+          </p>
+        </div>
+
+        <div class="flex flex-row">
+          <p class="flex justify-center items-baseline ml-10 mb-10 mt-10">
+            <span class="text-slate-200">Tiempo: </span> <input type="text" readonly name="segundos" id="segundos"
+              class="ml-2 bg-gray-100 border-2 border-lime-900 p-2 w-10" value="99"></input>
+          </p>
+          <p class="flex justify-center items-baseline mb-10 mt-10 ml-3">
+            <span class="text-slate-200">Puntuacion: </span> <input type="text" readonly name="puntuacion"
+              id="puntuacion" class="ml-2 bg-gray-100 border-2 border-lime-900 p-2 w-20" value="0"></input>
+          </p>
+        </div>
+
+        <div class="flex flex-col">
+          <div
+            class="rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 p-3 font-bold border-stone-900 border-2">
+            <p class="text-center underline decoration-double tracking-widest italic text-lg">
+              Mejor puntuacion:
+            </p>
+            <p class="text-center uppercase tracking-widest italic text-2xl">
+              <span class="puntuacion">0</span>
+            </p>
+          </div>
+        </div>
+
+      </main>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+
+</html>
