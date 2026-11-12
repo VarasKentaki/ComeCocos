@@ -7,9 +7,11 @@ function creadorJugador() {
   const pacMan = document.createElement('img');
   pacMan.classList.add('player');
   pacMan.src = '../img/Player.png';
-  div1.appendChild(pacMan);
-  let puntoexistente = div1.querySelector('.point');
-  puntoexistente.remove();
+
+  div1.replaceChildren(pacMan);
+
+  // let puntoexistente = div1.querySelector('.point');
+  // puntoexistente.remove();
 }
 function generarTablero() {
   tablero.forEach((e) => {
