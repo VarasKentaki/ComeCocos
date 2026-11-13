@@ -2,6 +2,7 @@ const tablero = document.querySelectorAll('#tablero > div');
 const div1 = tablero[0];
 const puntuacion = document.getElementById('puntuacion');
 const temporizado = document.getElementById('segundos');
+const puntuacionM = document.querySelector('.puntuacion');
 let gameOver = false;
 let fila = 0;
 let columna = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -187,9 +188,36 @@ function temporizador() {
       tiempo--;
       temporizado.value = tiempo;
     } else {
+      gameOver = true;
       clearInterval(id);
+      comparador();
     }
   }, 100);
+}
+function comparador() {
+  if (puntuacionM.textContent * 1 < puntuacion.value * 1) {
+    puntuacionM.textContent = puntuacion.value;
+    let dato = new Date();
+    dato.setDate(dato.getDate() + 1);
+    dato.setHours(0, 0, 0, 0);
+    console.log(dato.toString());
+
+    document.cookie = `Puntuacion=${puntuacionM.textContent};expires=${dato.toUTCString()}`;
+  }
+}
+function leCookie(buscar) {
+  const cookies = document.cookie.split('; ');
+  let cookie = null;
+  // console.log(cookies);
+
+  cookies.forEach((element) => {
+    let contarCookies = 1;
+    // console.log(element.split('=')[contarCookies]);
+    if (element.includes(buscar)) {
+      cookie = element.split('=')[contarCookies];
+      puntuacionM.textContent = cookie;
+    }
+  });
 }
 function teclaPulsada() {
   window.document.addEventListener('keydown', procesaTecla);
@@ -198,7 +226,9 @@ function teclaPulsada() {
 const iniciar = document.getElementById('partida').addEventListener('click', iniciarGame);
 generarTablero();
 creadorJugador();
+leCookie('Puntuacion');
 function iniciarGame() {
+  clearInterval(id);
   gameOver = false;
   fila = 0;
   pos = 0;
