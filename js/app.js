@@ -16,7 +16,7 @@ let arrayTime = [];
 let tiempo = 99;
 const pacMan = document.createElement('img');
 pacMan.classList.add('player');
-pacMan.src = '../img/Player.png';
+pacMan.src = 'img/Player.png';
 function conseguirPuntos(dondeEstoy) {
   if (dondeEstoy.firstElementChild?.className == 'point') {
     puntuacionActual += 100;
@@ -33,7 +33,7 @@ function generarTablero() {
   tablero.forEach((e) => {
     if (!e.classList.contains('border-blue-700')) {
       const point = document.createElement('img');
-      point.src = '../img/Point.png';
+      point.src = 'img/Point.png';
       point.classList.add('point');
       e.replaceChildren(point);
     }
@@ -65,7 +65,7 @@ function procesaTecla(e) {
       contImg = 1;
       let moveIzquierda = setInterval(() => {
         if (contImg != 5) {
-          pacMan.src = '../img/' + ArrayPacMan[contImg];
+          pacMan.src = 'img/' + ArrayPacMan[contImg];
 
           contImg++;
         } else {
@@ -93,7 +93,7 @@ function procesaTecla(e) {
       contImg = 1;
       let moveArriba = setInterval(() => {
         if (contImg != 3) {
-          pacMan.src = '../img/' + ArrayPacMan[contImg];
+          pacMan.src = 'img/' + ArrayPacMan[contImg];
 
           contImg++;
         } else {
@@ -125,7 +125,7 @@ function procesaTecla(e) {
 
       let moveDerecha = setInterval(() => {
         if (contImg != 5) {
-          pacMan.src = '../img/' + ArrayPacMan[contImg];
+          pacMan.src = 'img/' + ArrayPacMan[contImg];
 
           contImg++;
         } else {
@@ -155,7 +155,7 @@ function procesaTecla(e) {
 
       let moveBajar = setInterval(() => {
         if (contImg != 3) {
-          pacMan.src = '../img/' + ArrayPacMan[contImg];
+          pacMan.src = 'img/' + ArrayPacMan[contImg];
 
           contImg++;
         } else {
