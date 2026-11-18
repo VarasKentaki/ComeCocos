@@ -1,247 +1,197 @@
-const tablero = document.querySelectorAll('#tablero > div');
-const div1 = tablero[0];
-const puntuacion = document.getElementById('puntuacion');
-const temporizado = document.getElementById('segundos');
-const puntuacionM = document.querySelector('.puntuacion');
-let gameOver = false;
+const tablero = Array.from(document.querySelectorAll('#tablero > div'));
+const mejorpun = document.querySelector('.puntuacion');
+
+const matriz = [];
+let intervalArr = [];
 let fila = 0;
-let columna = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-let pos = 0;
-let player = [columna[pos], fila];
-let exitPoint = 0;
-let puntuacionActual = 0;
-let contImg = 0;
-let id = null;
-let arrayTime = [];
-let tiempo = 99;
-const pacMan = document.createElement('img');
-pacMan.classList.add('player');
-pacMan.src = 'img/Player.png';
-function conseguirPuntos(dondeEstoy) {
-  if (dondeEstoy.firstElementChild?.className == 'point') {
-    puntuacionActual += 100;
-    puntuacion.value = puntuacionActual;
+let colum = 0;
+let puntuacionCon = 0;
+let id;
+const segundos = document.querySelector('#segundos');
+
+const puntuacion = document.querySelector('#puntuacion');
+
+let gameOver = false;
+function crearTabla() {
+  for (let f = 0; f < 8; f++) {
+    matriz[f] = [];
+    for (let c = 0; c < 11; c++) {
+      matriz[f].push(tablero[f * 11 + c]);
+    }
+  }
+  return matriz;
+}
+function colocarPoint() {
+  tablero.forEach((element) => {
+    if (!element.classList.contains('border-blue-700')) {
+      const imagenPoint = document.createElement('img');
+      imagenPoint.src = '../img/Point.png';
+      imagenPoint.classList.add('point');
+      element.replaceChildren(imagenPoint);
+    }
+  });
+}
+function comprobarPoint(posicion) {
+  return posicion.firstChild?.classList.contains('point');
+}
+const imagenPacman = document.createElement('img');
+function InicJugador() {
+  imagenPacman.src = '../img/Player.png';
+  imagenPacman.classList.add('player');
+  matriz[0][0].replaceChildren(imagenPacman);
+}
+function pararInterval(intervalArr) {
+  console.log(intervalArr);
+
+  if (intervalArr != null) {
+    intervalArr.forEach((element) => {
+      console.log(element);
+
+      clearInterval(element);
+    });
   }
 }
-function creadorJugador() {
-  div1.replaceChildren(pacMan);
+function pulsaTeclado(e) {
+  e.preventDefault();
 
-  // let puntoexistente = div1.querySelector('.point');
-  // puntoexistente.remove();
-}
-function generarTablero() {
-  tablero.forEach((e) => {
-    if (!e.classList.contains('border-blue-700')) {
-      const point = document.createElement('img');
-      point.src = 'img/Point.png';
-      point.classList.add('point');
-      e.replaceChildren(point);
-    }
-  });
-}
-function limpiarTiem(arrayTime) {
-  arrayTime.forEach((element) => {
-    if (element != null) {
-      clearInterval(element);
-    }
-  });
-}
-function procesaTecla(e) {
-  let dondeEstoy;
-  e.preventDefault(); // evita que la página haga scroll con las flechas
-  if (e.repeat || gameOver) return; // ignorar si se mantiene la tecla o el juego ha terminado
+  if (e.repeat || gameOver) return;
+  switch (e.key) {
+    case 'ArrowRight':
+      if (colum != 10 && !matriz[fila][colum + 1]?.classList.contains('border-blue-700')) {
+        comprobarPoint(matriz[fila][colum + 1]) ? (puntuacionCon += 100) : false;
 
-  switch (e.keyCode) {
-    case 37: // flecha izquierda
-      // mover jugador a la izquierda
-      limpiarTiem(arrayTime);
-      ArrayPacMan = [
-        'Player.png',
-        'PlayerL-1.png',
-        'PlayerL-2.png',
-        'PlayerL-3.png',
-        'PlayerL-4.png',
-      ];
-      contImg = 1;
-      let moveIzquierda = setInterval(() => {
-        if (contImg != 5) {
-          pacMan.src = 'img/' + ArrayPacMan[contImg];
-
-          contImg++;
-        } else {
-          contImg = 0;
-        }
-      }, 100);
-      arrayTime.push(moveIzquierda);
-      playertemp = [columna[pos], fila - 1];
-
-      if (
-        player[1] != '0' &&
-        !document.getElementById(playertemp.join('')).classList.contains('border-blue-700')
-      ) {
-        player = [columna[pos], --fila];
-        dondeEstoy = document.getElementById(player.join(''));
-
-        conseguirPuntos(dondeEstoy);
-        dondeEstoy.replaceChildren(pacMan);
+        matriz[fila][++colum].replaceChildren(imagenPacman);
       }
-      break;
-    case 38: // flecha arriba
-      // mover jugador hacia arriba
-      limpiarTiem(arrayTime);
-      ArrayPacMan = ['Player.png', 'PlayerU-1.png', 'PlayerU-2.png'];
-      contImg = 1;
-      let moveArriba = setInterval(() => {
-        if (contImg != 3) {
-          pacMan.src = 'img/' + ArrayPacMan[contImg];
-
-          contImg++;
-        } else {
-          contImg = 0;
-        }
-      }, 100);
-      arrayTime.push(moveArriba);
-      playertemp = [columna[pos - 1], fila];
-      if (
-        player[0] != 'A' &&
-        !document.getElementById(playertemp.join('')).classList.contains('border-blue-700')
-      ) {
-        player = [columna[--pos], fila];
-        dondeEstoy = document.getElementById(player.join(''));
-        conseguirPuntos(dondeEstoy);
-        dondeEstoy.replaceChildren(pacMan);
-      }
-      break;
-    case 39: // flecha derecha
-      contImg = 1;
-      limpiarTiem(arrayTime);
-      ArrayPacMan = [
+      pararInterval(intervalArr);
+      const imgRight = [
         'Player.png',
         'PlayerR-1.png',
         'PlayerR-2.png',
         'PlayerR-3.png',
         'PlayerR-4.png',
       ];
-
-      let moveDerecha = setInterval(() => {
-        if (contImg != 5) {
-          pacMan.src = 'img/' + ArrayPacMan[contImg];
-
-          contImg++;
+      let contRigth = 0;
+      let moveRigth = setInterval(() => {
+        if (contRigth != 4) {
+          imagenPacman.src = '../img/' + imgRight[++contRigth];
         } else {
-          contImg = 0;
+          contRigth = 0;
         }
       }, 100);
-      arrayTime.push(moveDerecha);
-      playertemp = [columna[pos], fila + 1];
-
-      if (
-        player[1] != '10' &&
-        !document.getElementById(playertemp.join('')).classList.contains('border-blue-700')
-      ) {
-        player = [columna[pos], ++fila];
-        dondeEstoy = document.getElementById(player.join(''));
-
-        conseguirPuntos(dondeEstoy);
-        dondeEstoy.replaceChildren(pacMan);
-      }
-
+      intervalArr.push(moveRigth);
       break;
-    case 40: // flecha abajo
-      // mover jugador hacia abajo
-      contImg = 1;
-      limpiarTiem(arrayTime);
-      ArrayPacMan = ['Player.png', 'PlayerD-1.png', 'PlayerD-2.png'];
-
-      let moveBajar = setInterval(() => {
-        if (contImg != 3) {
-          pacMan.src = 'img/' + ArrayPacMan[contImg];
-
-          contImg++;
+    case 'ArrowLeft':
+      if (colum != 0 && !matriz[fila][colum - 1]?.classList.contains('border-blue-700')) {
+        comprobarPoint(matriz[fila][colum - 1]) ? (puntuacionCon += 100) : false;
+        matriz[fila][--colum].replaceChildren(imagenPacman);
+      }
+      pararInterval(intervalArr);
+      const imgleft = [
+        'Player.png',
+        'PlayerL-1.png',
+        'PlayerL-2.png',
+        'PlayerL-3.png',
+        'PlayerL-4.png',
+      ];
+      let contleft = 0;
+      let movleft = setInterval(() => {
+        if (contleft != 4) {
+          imagenPacman.src = '../img/' + imgleft[++contleft];
         } else {
-          contImg = 0;
+          contleft = 0;
         }
       }, 100);
-      arrayTime.push(moveBajar);
-      playertemp = [columna[pos + 1], fila];
-      if (
-        player[0] != 'H' &&
-        !document.getElementById(playertemp.join('')).classList.contains('border-blue-700')
-      ) {
-        player = [columna[++pos], fila];
-        dondeEstoy = document.getElementById(player.join(''));
-        conseguirPuntos(dondeEstoy);
-        dondeEstoy.replaceChildren(pacMan);
+      intervalArr.push(movleft);
+      break;
+    case 'ArrowUp':
+      if (fila != 0 && !matriz[fila - 1][colum]?.classList.contains('border-blue-700')) {
+        comprobarPoint(matriz[fila - 1][colum]) ? (puntuacionCon += 100) : false;
+        matriz[--fila][colum].replaceChildren(imagenPacman);
       }
-
+      pararInterval(intervalArr);
+      const imgUp = ['Player.png', 'PlayerU-1.png', 'PlayerU-2.png'];
+      let contUp = 0;
+      let moveUp = setInterval(() => {
+        if (contUp != 2) {
+          imagenPacman.src = '../img/' + imgUp[++contUp];
+        } else {
+          contUp = 0;
+        }
+      }, 100);
+      intervalArr.push(moveUp);
+      break;
+    case 'ArrowDown':
+      if (fila <= 6 && !matriz[fila + 1][colum]?.classList.contains('border-blue-700')) {
+        comprobarPoint(matriz[fila + 1][colum]) ? (puntuacionCon += 100) : false;
+        matriz[++fila][colum].replaceChildren(imagenPacman);
+      }
+      pararInterval(intervalArr);
+      const imgDown = ['Player.png', 'PlayerD-1.png', 'PlayerD-2.png'];
+      let contDown = 0;
+      let moveDown = setInterval(() => {
+        if (contDown != 2) {
+          imagenPacman.src = '../img/' + imgDown[++contDown];
+        } else {
+          contDown = 0;
+        }
+      }, 100);
+      intervalArr.push(moveDown);
+      break;
+    default:
       break;
   }
-  if (puntuacionActual == 5900) {
-    gameOver = true;
-    clearInterval(id);
-  }
+
+  puntuacion.value = puntuacionCon;
 }
 function temporizador() {
-  tiempo = 99;
+  let tempo = segundos.value;
   id = setInterval(() => {
-    if (parseInt(tiempo) != 0) {
-      tiempo--;
-      temporizado.value = tiempo;
+    if (tempo != 0) {
+      tempo--;
+      segundos.value = tempo;
     } else {
       gameOver = true;
+      pararInterval(intervalArr);
+
+      if (puntuacion.value * 1 > mejorpun.textContent * 1) {
+        mejorpun.textContent = puntuacion.value * 1;
+        fecha.setDate(fecha.getDate() + 1);
+        fecha.setHours(0, 0, 0, 0);
+        document.cookie = `Puntuacion=${mejorpun.textContent};expires=${fecha.toUTCString()}`;
+      }
       clearInterval(id);
-      comparador();
     }
   }, 100);
 }
-function comparador() {
-  if (puntuacionM.textContent * 1 < puntuacion.value * 1) {
-    puntuacionM.textContent = puntuacion.value;
-    let dato = new Date();
-    dato.setDate(dato.getDate() + 1);
-    dato.setHours(0, 0, 0, 0);
-    console.log(dato.toString());
 
-    document.cookie = `Puntuacion=${puntuacionM.textContent};expires=${dato.toUTCString()}`;
+function leeCooki() {
+  let cookie = document.cookie;
+  if (cookie) {
+    let arrayCooki = cookie.split('; ');
+    arrayCooki.forEach((element) => {
+      if (element.split('=')[0] == 'Puntuacion') {
+        mejorpun.textContent = element.split('=')[1];
+      }
+    });
   }
 }
-function leCookie(buscar) {
-  const cookies = document.cookie.split('; ');
-  let cookie = null;
-  // console.log(cookies);
-
-  cookies.forEach((element) => {
-    let contarCookies = 1;
-    // console.log(element.split('=')[contarCookies]);
-    if (element.includes(buscar)) {
-      cookie = element.split('=')[contarCookies];
-      puntuacionM.textContent = cookie;
-    }
-  });
-}
-function teclaPulsada() {
-  window.document.addEventListener('keydown', procesaTecla);
-}
-
-const iniciar = document.getElementById('partida').addEventListener('click', iniciarGame);
-generarTablero();
-creadorJugador();
-leCookie('Puntuacion');
-function iniciarGame() {
+document.querySelector('#partida').addEventListener('click', iniciar);
+let fecha = new Date();
+crearTabla();
+colocarPoint();
+InicJugador();
+leeCooki();
+function iniciar() {
   clearInterval(id);
-  gameOver = false;
+  intervalArr = [];
   fila = 0;
-  pos = 0;
-  player = [columna[pos], fila];
-  tiempo = 99;
-  exitPoint = 0;
-  puntuacionActual = 0;
-  puntuacion.value = puntuacionActual;
-  contImg = 0;
-  limpiarTiem(arrayTime);
-  arrayTime = [];
-  generarTablero();
-  creadorJugador();
-  teclaPulsada();
+  colum = 0;
+  puntuacion.value = 0;
+  segundos.value = 99;
+  puntuacionCon = 0;
+  gameOver = false;
+  document.addEventListener('keydown', pulsaTeclado);
+  colocarPoint();
+  InicJugador();
   temporizador();
 }
